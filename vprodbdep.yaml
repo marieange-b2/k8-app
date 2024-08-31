@@ -37,7 +37,7 @@ spec:
         volumeID: vol-05d93d514220156a4
         fsType: ext4
 
-    initContainers:
+    initContainers: # to remove the dir
       - name: busybox
         image: busybox:latest
         args: ["rm","-rf","/var/lib/mysql/lost+found"]
