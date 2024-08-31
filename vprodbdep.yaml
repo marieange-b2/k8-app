@@ -10,7 +10,7 @@ spec:
       app: vprodb
   replicas: 1
   template:
-    metadat:
+    metadata:
       labels:
         app: vprodb
     spec:
@@ -29,18 +29,18 @@ spec:
                  secretKeyRef:
                   name: app-secret
                   key: db-pass
-    nodeSelector:
-      zone: us-east-1a
-    volumes:
-      - name: vpro-db-data
-        awsElasticBlockStore:
-        volumeID: vol-05d93d514220156a4
-        fsType: ext4
+      nodeSelector:
+        zone: us-east-1a
+      volumes:
+        - name: vpro-db-data
+          awsElasticBlockStore:
+          volumeID: vol-05d93d514220156a4
+          fsType: ext4
 
-    initContainers: # to remove the dir
-      - name: busybox
-        image: busybox:latest
-        args: ["rm","-rf","/var/lib/mysql/lost+found"]
-        volumeMounts:
-          - name: vpro-db-data
-            mountPath: /var/lib/mysql
+      initContainers: # to remove the dir
+        - name: busybox
+          image: busybox:latest
+          args: ["rm","-rf","/var/lib/mysql/lost+found"]
+          volumeMounts:
+            - name: vpro-db-data
+              mountPath: /var/lib/mysql
