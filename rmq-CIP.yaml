@@ -7,6 +7,6 @@ spec:
   selector:
     app: vpromq01
   ports:
-  - port: 5672
+  - port: 15672
     targetPort: vpromq01-port
     protocol: TCP
